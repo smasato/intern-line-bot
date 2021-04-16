@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~>6.0.2'
+gem 'rails', '~>6.1.3'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.1'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -44,3 +44,5 @@ gem 'sinatra'
 gem 'bootsnap', require: false
 
 gem 'listen', group: :development
+
+gem 'mini_racer'
