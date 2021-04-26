@@ -47,7 +47,7 @@ gem 'bootsnap', require: false
 gem 'listen', group: :development
 
 gem 'mini_racer'
-
+gem 'pry-rails'
 group :development, :test do
     gem "rspec-rails"
     gem "factory_bot_rails"
