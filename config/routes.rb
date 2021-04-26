@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get "oauth2callback", to:"calendar#callback"
   get 'calendar/index', to:"calendar#index"
   get "initialize", to:"calendar#initialize"
+  get "fetchEvents", to:"calendar#fetchEvents"
 end
