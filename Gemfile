@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~>6.1.3'
+gem 'rails', '~>6.0.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'pg', '~> 0.18'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -35,7 +35,6 @@ gem 'puma'
 gem 'line-bot-api'
 gem 'sinatra'
 
-gem 'dotenv-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,12 +44,3 @@ gem 'dotenv-rails'
 gem 'bootsnap', require: false
 
 gem 'listen', group: :development
-
-gem 'mini_racer'
-gem 'pry-rails'
-group :development, :test do
-    gem "rspec-rails"
-    gem "factory_bot_rails"
-end
-
-gem 'google-api-client'
