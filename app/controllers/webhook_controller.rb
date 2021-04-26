@@ -17,8 +17,7 @@ class WebhookController < ApplicationController
     unless client.validate_signature(body, signature)
       head 470
     end
-    tokyo_tech_calendar = Calendar.new 
-    
+
     events = client.parse_events_from(body)
     events.each { |event|
       case event
@@ -27,7 +26,7 @@ class WebhookController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: tokyo_tech_calendar.get_schedule
+            text: event.message['text']
           }
           client.reply_message(event['replyToken'], message)
         when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
