@@ -146,7 +146,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rdoc (6.2.1)
+    rdoc (6.3.2)
     ruby2_keywords (0.0.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
