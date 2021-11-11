@@ -1,4 +1,5 @@
 require 'line/bot'
+require 'giftee/gajoen'
 
 class WebhookController < ApplicationController
   protect_from_forgery except: [:callback] # CSRF対策無効化
@@ -8,6 +9,12 @@ class WebhookController < ApplicationController
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
+  end
+
+  def gajoen_client
+    @gajoen ||= Giftee::Gajoen::Client.new(
+      { domain: ENV["GAJOEN_DOMAIN"], token: ENV["GAJOEN_TOKEN"] }
+    )
   end
 
   def callback
@@ -21,6 +28,25 @@ class WebhookController < ApplicationController
     events = client.parse_events_from(body)
     events.each { |event|
       case event
+      when Line::Bot::Event::Follow
+        coupon = gajoen_client.post({ brand_id: 145, item_id: 56509, request_code: event['source']["userId"] })
+        logger.debug coupon
+        message = {
+          type: 'template',
+          altText: 'test alt text',
+          template: [
+            type: "buttons",
+            text: 'text',
+            actions: [
+              {
+                type: 'uri',
+                label: "test label",
+                url: coupon[:url]
+              }
+            ]
+          ]
+        }
+        client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
