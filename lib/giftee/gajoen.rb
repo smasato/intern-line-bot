@@ -6,7 +6,7 @@ require 'active_support/core_ext/hash/except.rb'
 module Giftee
   module Gajoen
     class Client
-      attr_accessor :domain, :token
+      attr_reader :domain, :token
 
       def initialize(options = {})
         options.each do |key, value|
