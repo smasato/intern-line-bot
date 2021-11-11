@@ -14,12 +14,6 @@ module Giftee
         end
       end
 
-      def http
-        http = Net::HTTP.new(domain, 443)
-        http.use_ssl = true
-        http
-      end
-
       # @param [Hash] params
       def get(params)
         return nil if params.key?('brand_id') && params.key?('request_code')
@@ -43,6 +37,14 @@ module Giftee
 
         res = http.request(req)
         JSON.parse(res.body)
+      end
+
+      private
+
+      def http
+        http = Net::HTTP.new(domain, 443)
+        http.use_ssl = true
+        http
       end
 
       def headers
