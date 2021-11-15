@@ -33,20 +33,24 @@ class WebhookController < ApplicationController
         logger.debug coupon
         message = {
           type: 'template',
-          altText: 'test alt text',
-          template: [
+          altText: 'test alt text', # TODO
+          template: {
             type: "buttons",
             text: 'text',
             actions: [
               {
                 type: 'uri',
-                label: "test label",
-                url: coupon[:url]
+                label: "test label", # TODO
+                uri: coupon['url']
               }
             ]
-          ]
+          }
         }
+        logger.debug 'message ' + message
         client.reply_message(event['replyToken'], message)
+        logger.debug 'responce code ' + res.code
+        logger.debug 'responce body ' + res.body
+        logger.debug 'responce message ' + res.message
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
