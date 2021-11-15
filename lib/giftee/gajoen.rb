@@ -6,18 +6,12 @@ require 'active_support/core_ext/hash/except.rb'
 module Giftee
   module Gajoen
     class Client
-      attr_accessor :domain, :token
+      attr_reader :domain, :token
 
       def initialize(options = {})
         options.each do |key, value|
           instance_variable_set("@#{key}", value)
         end
-      end
-
-      def http
-        http = Net::HTTP.new(domain, 443)
-        http.use_ssl = true
-        http
       end
 
       # @param [Hash] params
@@ -43,6 +37,14 @@ module Giftee
 
         res = http.request(req)
         JSON.parse(res.body)
+      end
+
+      private
+
+      def http
+        http = Net::HTTP.new(domain, 443)
+        http.use_ssl = true
+        http
       end
 
       def headers
