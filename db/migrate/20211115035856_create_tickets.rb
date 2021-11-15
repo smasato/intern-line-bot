@@ -12,5 +12,6 @@ class CreateTickets < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :tickets, :url, unique: true
   end
 end

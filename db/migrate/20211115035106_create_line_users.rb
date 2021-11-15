@@ -6,5 +6,6 @@ class CreateLineUsers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :line_users, :user_id, unique: true
   end
 end

@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_035856) do
     t.string "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_line_users_on_user_id", unique: true
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_035856) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["coupon_setting_id"], name: "index_tickets_on_coupon_setting_id"
     t.index ["line_user_id"], name: "index_tickets_on_line_user_id"
+    t.index ["url"], name: "index_tickets_on_url", unique: true
   end
 
   add_foreign_key "coupon_setting_duration_options", "coupon_settings"
