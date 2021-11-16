@@ -35,6 +35,7 @@ class WebhookController < ApplicationController
               altText: s.message,
               template: {
                 type: "buttons",
+                title: s.name,
                 text: s.message,
                 actions: [
                   {
