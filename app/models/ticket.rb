@@ -14,7 +14,7 @@ class Ticket < ApplicationRecord
     ticket.line_user = line_user
 
     %w[issued_at exchanged_at disabled_at].each do |at|
-      ticket.send("#{at}=", Time.at(coupon_hash[at])) unless coupon_hash[at].nil?
+      ticket.public_send("#{at}=", Time.at(coupon_hash[at])) unless coupon_hash[at].nil?
     end
 
     ticket.save
