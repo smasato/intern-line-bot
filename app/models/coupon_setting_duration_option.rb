@@ -1,2 +1,0 @@
-class CouponSettingDurationOption < ApplicationRecord
-end
