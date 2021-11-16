@@ -21,6 +21,33 @@ class WebhookController < ApplicationController
     events = client.parse_events_from(body)
     events.each { |event|
       case event
+      when Line::Bot::Event::Follow
+        user = LineUser.find_or_create_by(user_id: event['source']["userId"], name: JSON.parse(client.get_profile(event['source']["userId"]).body)['displayName'])
+        settings = CouponSetting.follow_option.enabled
+        if settings
+          settings.each do |s|
+            next if Ticket.where(line_user: user, coupon_setting: s).present?
+
+            ticket = Ticket.create_ticket(item_id = s.item_id, request_code = user.user_id + s.id.to_s,
+                                          coupon_setting = s, line_user = user)
+            message = {
+              type: 'template',
+              altText: s.message,
+              template: {
+                type: "buttons",
+                text: s.message,
+                actions: [
+                  {
+                    type: 'uri',
+                    label: 'クーポンを使う',
+                    uri: ticket.url
+                  }
+                ]
+              }
+            }
+            client.push_message(user.user_id, message)
+          end
+        end
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
