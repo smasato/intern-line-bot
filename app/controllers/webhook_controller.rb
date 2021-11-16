@@ -35,6 +35,8 @@ class WebhookController < ApplicationController
               altText: s.message,
               template: {
                 type: "buttons",
+                thumbnailImageUrl: "https://arcane-dusk-04353.herokuapp.com/imgs/thumbnail.jpg",
+                imageAspectRatio: "square",
                 text: s.message,
                 actions: [
                   {
