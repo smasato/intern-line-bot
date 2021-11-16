@@ -27,10 +27,10 @@ class WebhookController < ApplicationController
         settings = CouponSetting.follow_option.enabled
         if settings
           settings.each do |s|
-            next if Ticket.where(line_user_id: user.id, coupon_setting_id: s.id).present?
+            next if Ticket.where(line_user: user, coupon_setting: s).present?
 
             ticket = Ticket.create_ticket(item_id = s.item_id, request_code = user.user_id + s.id.to_s,
-                                          coupon_setting_id = s.id, line_user_id = user.id)
+                                          coupon_setting = s, line_user = user)
             logger.debug ticket
             message = {
               type: 'template',
