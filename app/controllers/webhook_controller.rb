@@ -22,8 +22,7 @@ class WebhookController < ApplicationController
     events.each { |event|
       case event
       when Line::Bot::Event::Follow
-        user = LineUser.find_by_user_id(event['source']["userId"]) || LineUser.create(user_id: event['source']["userId"],
-                                                                                      name: JSON.parse(client.get_profile(event['source']["userId"]).body)['displayName'])
+        user = LineUser.find_or_create_by(user_id: event['source']["userId"], name: JSON.parse(client.get_profile(event['source']["userId"]).body)['displayName'])
         settings = CouponSetting.follow_option.enabled
         if settings
           settings.each do |s|
