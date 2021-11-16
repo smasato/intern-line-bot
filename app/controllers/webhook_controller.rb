@@ -31,7 +31,6 @@ class WebhookController < ApplicationController
 
             ticket = Ticket.create_ticket(item_id = s.item_id, request_code = user.user_id + s.id.to_s,
                                           coupon_setting = s, line_user = user)
-            logger.debug ticket
             message = {
               type: 'template',
               altText: s.message,
@@ -47,11 +46,7 @@ class WebhookController < ApplicationController
                 ]
               }
             }
-            logger.debug 'message ' + message.to_s
-            res = client.push_message(user.user_id, message)
-            logger.debug 'responce code ' + res.code
-            logger.debug 'responce body ' + res.body
-            logger.debug 'responce message ' + res.message.to_s
+            client.push_message(user.user_id, message)
           end
         end
       when Line::Bot::Event::Message
