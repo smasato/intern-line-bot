@@ -1,4 +1,4 @@
-<%= form_for(@coupon_setting) do |f| %>
+<%= form_with model: @coupon_setting do |f| %>
   <% if @coupon_setting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@coupon_setting.errors.count, "error") %> prohibited this coupon_setting from being saved:</h2>
