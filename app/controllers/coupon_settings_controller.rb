@@ -24,32 +24,26 @@ class CouponSettingsController < ApplicationController
     @coupon_setting = CouponSetting.new(coupon_setting_params)
     @coupon_setting.thumbnail = coupon_setting_params[:thumbnail].read
 
-    respond_to do |format|
-      if @coupon_setting.save
-        format.html { redirect_to @coupon_setting, notice: 'CouponSetting was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @coupon_setting.save
+      redirect_to @coupon_setting, notice: 'CouponSetting was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /coupon_settings/1
   def update
-    respond_to do |format|
-      if @coupon_setting.update(coupon_setting_params)
-        format.html { redirect_to @coupon_setting, notice: 'CouponSetting was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @coupon_setting.update(coupon_setting_params)
+      redirect_to @coupon_setting, notice: 'CouponSetting was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /coupon_settings/1
   def destroy
     @coupon_setting.destroy
-    respond_to do |format|
-      format.html { redirect_to coupon_settings_url, notice: 'CouponSetting was successfully destroyed.' }
-    end
+    redirect_to coupon_settings_url, notice: 'CouponSetting was successfully destroyed.'
   end
 
   private
