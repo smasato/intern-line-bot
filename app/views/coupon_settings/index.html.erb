@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Listing CouponSettings</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>status</th>
+      <th>follow_option</th>
+      <th>name</th>
+      <th>message</th>
+      <th>item_id</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @coupon_settings.each do |coupon_setting| %>
+      <tr>
+        <td><%= coupon_setting.status %></td>
+        <td><%= coupon_setting.follow_option.present? %></td>
+        <td><%= coupon_setting.name %></td>
+        <td><%= coupon_setting.message %></td>
+        <td><%= coupon_setting.item_id %></td>
+        <td><%= link_to 'Show', coupon_setting %></td>
+        <td><%= link_to 'Edit', edit_coupon_setting_path(coupon_setting) %></td>
+        <td><%= link_to 'Destroy', coupon_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New CouponSettings', new_coupon_setting_path %>
+
+</div>

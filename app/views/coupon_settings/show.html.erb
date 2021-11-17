@@ -1,0 +1,33 @@
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @coupon_setting.status %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @coupon_setting.name %>
+  </p>
+
+  <p>
+    <strong>Message:</strong>
+    <%= @coupon_setting.message %>
+  </p>
+
+  <p>
+    <strong>item_id:</strong>
+    <%= @coupon_setting.item_id %>
+  </p>
+
+  <p>
+    <strong>Follow_option:</strong>
+    <%= @coupon_setting.follow_option.present? %>
+  </p>
+
+  <%= link_to 'Edit', edit_coupon_setting_path(@coupon_setting) %> |
+  <%= link_to 'Back', coupon_settings_path %>
+
+</div>
